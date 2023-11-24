@@ -19,18 +19,13 @@ Follow the link to read more on the strategy and various tools involved in execu
    * [log_in_attempts](#log_in_attempts)
    * [employees](#employees)
    * [Failed Login Attempts - After Hours](#Failed-Login-Attempts-After-Hours)
-   * [Continue Set Up: Download Windows 10 ISO file](#Download-Windows-10-ISO-file)
-   * [Part 1: Download and Install Nessus Essentials](#Part-1-Download-and-Install-Nessus-Essentials)
-   * [Part 2: Initialize Nessus Installation](#Part-2-Initialize-Nessus-Installation)
-   * [Part 3: Setup Target Virtual Machine](#Part-3-Setup-Target-Virtual-Machine)
-   * [Part 4: Configure Target Virtual Machine Firewall](#Part-4-Configure-Target-Virtual-Machine-Firewall)
-   * [Part 5: Run Basic Network Scan (Non-Credentialed)](#Part-5-Run-Basic-Network-Scan-Non-Credentialed)
-   * [Part 6: Re-Configure Target Virtual Machine](#Part-6-Re-Configure-Target-Virtual-Machine)
-   * [Part 7: Run Second Scan (Credentialed)](#Part-7-Run-Second-Scan-Credentialed)
-   * [Part 8: Run Third Scan (Deprecated Software - Firefox)](#Part-8-Run-Third-Scan-Deprecated-Software-Firefox)
-   * [Part 9: Remediation through Updates and Patching](#Part-9-Remediation-through-Updates-and-Patching)
-   * [Part 10: Run Final Scan](#Part-10-Run-Final-Scan)
-   * [Results and Takeaways](#Results-and-Takeaways)
+   * [Failed Login Attempts - Specific Dates](#Failed-Login-Attempts-Specific-Dates)
+   * [Failed Login Attempts - Outside of Mexico](#Failed-Login-Attempts-Outside-of-Mexico)
+   * [Employee Updates - Marketing Department](#Employee-Updates-Marketing-Department)
+   * [Employee Updates - Sales and Finance Department](#Employee-Updates-Sales-and-Finance-Department)
+   * [Employee Updates - Not the Info Tech Department](#Employee-Updates-Not-the-Info-Tech-Department)
+   * [Summary](#Summary)
+   * [Key Takeaways](#Key-Takeaways)
 
 ### Table Formats
 The organization database contains the following two tables:
@@ -203,135 +198,54 @@ WHERE department = 'Finance' OR department = 'Sales';
 
 Breakdown
 
-SELECT * — * is a wildcard which indicates you will select all
-FROM employees — specifies which dataset we will be pulling from
-WHERE — clause (WHERE) used with OR to filter for employees who meet either criteria (sales or finance) from department column
-department = ‘Finance’ first condition, specific department (finance)
-OR department = ‘Sales’;- OR operator and second condition, specific department (sales)
+* ```SELECT *``` — * is a wildcard which indicates you will select all
+* ```FROM employees``` — specifies which dataset we will be pulling from
+* ```WHERE``` — clause (WHERE) used with OR to filter for employees who meet either criteria (sales or finance) from department column
+* ```department = ‘Finance’``` - first condition, specific department (finance)
+* ```OR department = ‘Sales’;``` - OR operator and second condition, specific department (sales)
 
 Query in three parts and the output it gives
-Employee Updates — Not the Info Tech Department
+
+![image](https://github.com/resii-tech/SQL-Lab/assets/129999089/f0a74c3e-aec3-4a0e-9be3-d70db7bd0125)
+
+## Employee Updates — Not the Info Tech Department
+
 The security analyst needs to make one more update to employee machines. The employees who are in the Information Technology department already had this update, but employees in all other departments need it.
 
 We will use filters in SQL to create a query which identifies all employees not in the IT department. (The department of the employee is found in the department column, which contains values that include Information Technology.)
 
 Screenshot
 
+![image](https://github.com/resii-tech/SQL-Lab/assets/129999089/3ed82777-0fb1-4dfc-880b-59e52b71fd6d)
 
-Employee updates — NOT command
 Command
 
-SELECT * FROM employees WHERE NOT department = 'Information Technology';
+```sql
+SELECT *
+FROM employees
+WHERE NOT department = 'Information Technology'
+```
+
 Breakdown
 
-SELECT * — * is a wildcard which indicates you will select all
-FROM employees — specifies which dataset we will be pulling from
-WHERE NOT — clause (WHERE) used with NOT to filter for employees who are not in a specific department (information technology)
-department = ‘Information Technology’; specifies department in query being used to be Information Technology
+* ```SELECT *``` — * is a wildcard which indicates you will select all
+* ```FROM employees``` — specifies which dataset we will be pulling from
+* ```WHERE NOT``` — clause (WHERE) used with NOT to filter for employees who are not in a specific department (information technology)
+* ```department = ‘Information Technology’;``` - specifies department in query being used to be Information Technology
 
 Query in three parts and the output it gives
-Summary
+
+![image](https://github.com/resii-tech/SQL-Lab/assets/129999089/fc57f634-fe1d-4690-b24b-06022bab3ccd)
+
+## Summary
+
 In this lab we were able to demonstrate how a security analyst would use SQL filters and operators to form queries that pulled from two tables in order to access records from different datasets and investigate potential security risks or update employee computers.
 
 The two tables used were log_in_attempts and employees. The operators used to filter for specific information were AND, OR and NOT. The filters used to form patterns were LIKE and the % wildcard.
 
-SQL can be used for precise data extraction making it a powerful cybersecurity tool. Data analysis plays a vital role in adding context to logs and databases full of information that need to be parsed and interpreted. This lab demonstrated the relevance and versatility of SQL.
+###  Takeaways
 
-
-
-
-
-
-
-
-## <span style="text-decoration:underline;">Employee Updates - Sales and Finance Departments</span>
-
-The security analyst needs to perform a different security update on machines for employees in the Sales and Finance departments. We will use filters in SQL to create a query that identifies all employees in the Sales or Finance departments. (The department of the employee is found in the **department** column, which contains values that include **Sales** and **Finance**.)
-
-The following screenshots will show the query used:
-
-
-
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image11.png "image_tooltip")
-
-
-Command:** <code>>SELECT * FROM employees WHERE department = 'Finance' OR department = 'Sales';</code></strong>
-
-Breakdown:
-
-**<code>SELECT * </code></strong>- * is a wildcard which indicates you will select all 
-
-**<code>FROM employees </code></strong>- specifies which dataset we will be pulling from
-
-**<code>WHERE </code></strong>- clause (WHERE) used with OR to filter for employees who meet either criteria (sales or finance) from department column
-
-**<code>department = 'Finance'</code></strong> first condition, specific department (finance)
-
-**<code>OR department = 'Sales';-</code></strong> OR operator and second condition, specific department (sales) 
-
-Here is a screenshot of the query written in three parts and the output it gives:
-
-
-
-<p id="gdcalert12" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image12.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert13">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image12.png "image_tooltip")
-
-
-
----
-
-
-## <span style="text-decoration:underline;">Employee Updates - Not the Information Technology Department</span>
-
-The security analyst needs to make one more update to employee machines. The employees who are in the Information Technology department already had this update, but employees in all other departments need it. 
-
-We will use filters in SQL to create a query which identifies all employees not in the IT department. (The department of the employee is found in the **department** column, which contains values that include **Information Technology**.)
-
-The following screenshots will show the query used:
-
-
-
-<p id="gdcalert13" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image13.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert14">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image13.png "image_tooltip")
-
-
-Command: **<code>>SELECT * FROM employees WHERE NOT department = 'Information Technology';</code></strong>
-
-Breakdown:
-
-**<code>SELECT * </code></strong>- * is a wildcard which indicates you will select all 
-
-**<code>FROM employees </code></strong>- specifies which dataset we will be pulling from
-
-**<code>WHERE NOT </code></strong>- clause (WHERE) used with NOT to filter for employees who are not in a specific department (information technology)
-
-**<code>department = 'Information Technology';</code></strong> specifies department in query being used to be Information Technology
-
-Here is a screenshot of the query written in three parts and the output it gives:
-
-
-
-<p id="gdcalert14" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image14.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert15">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image14.png "image_tooltip")
-
-
-
----
-
-
-## <span style="text-decoration:underline;">Summary</span>
-
-In this lab we were able to demonstrate how a security analyst would use SQL filters and operators to form queries that pulled from two tables in order to access records from different datasets and investigate potential security risks or update employee computers. 
-
-The two tables used were** log_in_attempts** and **employees**. The operators used to filter for specific information were **AND**, **OR **and **NOT**. The filters used to form patterns were **LIKE **and the **% **wildcard. 
-
-There were some fundamental usages of the SQL language that weren’t explained but that could be inferred or researched in order to gain a basic working knowledge of how to use SQL as a security analyst. This lab focused on specific use cases taken from a security analyst’s daily responsibilities to showcase practical use cases. 
+- [ ] SQL can be used for precise data extraction
+- [ ] SQL can be used for data analysis
+- [ ] Data analysis adds contect to logs and database information needing to be parsed and interpreted
+- [ ] SQL maintains versatility and relevance as an important cybersecurity tool
